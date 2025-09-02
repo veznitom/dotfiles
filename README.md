@@ -30,7 +30,7 @@ This repository contains dotfiles and programs used in my Arch Hyprland setup. T
 A notification daemon, `pipewire`, `wireplumber`, `xdg-desktop-portal-hyprland`, authentication agent, `qt5-wayland`, `qt6-wayland`, `noto-fonts`.
 
 ## Theming
-`pywal` is used to set theme colors from image, ideally a wallpaper.
+`pywal16` is used to set theme colors from image, ideally a wallpaper.
 
 ## Miscellaneous Key Bindings
 | Key bindings                 | Purpose                     |

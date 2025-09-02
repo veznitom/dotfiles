@@ -1,0 +1,34 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "custom/launcher",
+    "wlr/taskbar",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "hyprland/workspace"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "network",
+    "temperature",
+    "bluetooth",
+    "backlight",
+    "battery",
+    "hyprland/language",
+    "tray",
+    "clock",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "Apps",
+    "on-click": "rofi -show drun"
+  },
+  "custom/power": {
+    "format": "Power",
+    "on-click": "wlogout"
+  }
+}
