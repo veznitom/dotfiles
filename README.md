@@ -53,7 +53,7 @@ Selecting default applications `selectdefaultapplication-git`.
 - Add to `/etc/mkinitcpio.conf`
 
 **NVIDIA compatibility**
-- This is required only is using onlder NVIDIA proprietary drivers or GPU |
+- This is required only is using onlder NVIDIA proprietary drivers or GPU
 - `/etc/environment`
   ```
   GBM_BACKEND=nvidia-drm
@@ -70,7 +70,7 @@ Selecting default applications `selectdefaultapplication-git`.
   ```
 
 **Bluetooth**
-- To enable "smarter" behavior of some bluetooth devices |
+- To enable "smarter" behavior of some bluetooth devices
 - `/etc/bluetooth/main.conf`
   ```
   FastConnectable = true
@@ -79,7 +79,7 @@ Selecting default applications `selectdefaultapplication-git`.
   ```
 
 **Pipewire**
-- To enable default higher sampling rate |
+- To enable default higher sampling rate
 - `~/.config/pipewire/pipewire.conf`
   ```
   default.clock.rate          = 176000
