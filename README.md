@@ -41,12 +41,19 @@ Selecting default applications `selectdefaultapplication-git`.
 
 ## Configuration
 ### Outside `.config`
-| Purpose              | Location                       | Notes                                                                   |
-| -------------------- | ------------------------------ | ----------------------------------------------------------------------- |
-| Default applications | `~/.config/mimeapps.list`      |                                                                         |
-| SDDM                 | `/etc/sddm.conf.d/`            | Default `/usr/lib/sddm/sddm.conf.d/default.conf`                        |
-| Plymouth             | `/etc/plymouth/plymouthd.conf` | Add to `/etc/mkinitcpio.conf`                                           |
-| NVIDIA compatibility |                                | This is required only is using onlder NVIDIA proprietary drivers or GPU |
+**Default applications**
+- `~/.config/mimeapps.list`
+
+**SDDM**
+- `/etc/sddm.conf.d/`
+- Default `/usr/lib/sddm/sddm.conf.d/default.conf`
+
+**Plymouth**
+- `/etc/plymouth/plymouthd.conf`
+- Add to `/etc/mkinitcpio.conf`
+
+**NVIDIA compatibility**
+- This is required only is using onlder NVIDIA proprietary drivers or GPU |
 - `/etc/environment`
   ```
   GBM_BACKEND=nvidia-drm
@@ -61,18 +68,18 @@ Selecting default applications `selectdefaultapplication-git`.
   ```
   MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
   ```
-|           |     |                                                        |
-| --------- | --- | ------------------------------------------------------ |
-| Bluetooth |     | To enable "smarter" behavior of some bluetooth devices |
+
+**Bluetooth**
+- To enable "smarter" behavior of some bluetooth devices |
 - `/etc/bluetooth/main.conf`
   ```
   FastConnectable = true
   ReconnectAttempts=7
   ReconnectIntervals=1, 2, 3
   ```
-|          |     |                                        |
-| -------- | --- | -------------------------------------- |
-| Pipewire |     | To enable default higher sampling rate |
+
+**Pipewire**
+- To enable default higher sampling rate |
 - `~/.config/pipewire/pipewire.conf`
   ```
   default.clock.rate          = 176000
