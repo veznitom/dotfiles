@@ -1,25 +1,27 @@
 # Arch Linux Hyprland dotfiles
 This repository contains dotfiles and programs used in my Arch Hyprland setup. The goal is to have fully fledged desktop environment.
 ## Arch Linux Desktop Environment
-| Component                   |                                    | Key bindings       |
-| --------------------------- | ---------------------------------- | ------------------ |
-| Application launcher        | `rofi-wayland`                     | Super + D          |
-| Audio control               | `cable`, `pipewire`, `wireplumber` |                    |
-| Backlight control           | `brightnessctl`                    |                    |
-| Clipboard manager           | `cliphist`                         |                    |
-| Display manager             | `sddm`                             |                    |
-| Logout dialogue             | `wlogout`                          |                    |
-| Notification daemon         | `mako`                             |                    |
-| Polkit authentication agent | `hyprpolkitagent`                  |                    |
-| Power control               | `tuned-ppd`                        |                    |
-| Power management            | `poweralertd`                      |                    |
-| Taskbar                     | `waybar`                           | Super + M (reload) |
-| Terminal emulator           | `kitty`                            | Super + Return     |
-| Screen capture              | `grim`                             |                    |
-| Screen locker               | `hyprlock`, `hypridle`             | Super + L          |
-| Screen temperature          | `hyprsunset`                       |                    |
-| Shell                       | `fish`                             |                    |
-| Wallpaper setter            | `hyprpaper`                        |                    |
+| Component                   |                                                   | Key bindings       |
+| --------------------------- | ------------------------------------------------- | ------------------ |
+| Application launcher        | `rofi-wayland`                                    | Super + D          |
+| Audio control               | `pwvucontrol`, `cable`, `pipewire`, `wireplumber` |                    |
+| Backlight control           | `brightnessctl`                                   |                    |
+| Bluetooth manager           | `blueman`                                         |                    |
+| Clipboard manager           | `cliphist`                                        |                    |
+| Display manager             | `sddm`                                            |                    |
+| Logout dialogue             | `wlogout`                                         |                    |
+| Network management          | `iwd`, `dhcpcd`, `openresolv`                     |                    |
+| Notification daemon         | `mako`                                            |                    |
+| Polkit authentication agent | `hyprpolkitagent`                                 |                    |
+| Power control               | `tuned-ppd`                                       |                    |
+| Power management            | `poweralertd`                                     |                    |
+| Taskbar                     | `waybar`                                          | Super + M (reload) |
+| Terminal emulator           | `kitty`                                           | Super + Return     |
+| Screen capture              | `grim`                                            |                    |
+| Screen locker               | `hyprlock`, `hypridle`                            | Super + L          |
+| Screen temperature          | `hyprsunset`                                      |                    |
+| Shell                       | `fish`                                            |                    |
+| Wallpaper setter            | `hyprpaper`                                       |                    |
 
 ### Additional applications
 | Category             |                      | Key bindings |
@@ -87,6 +89,17 @@ Selecting default applications `selectdefaultapplication-git`.
   default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 352800 384000 705600 768000 ]
   ```
 
+**Networking**
+- `/etc/iwd/main.conf`
+  ```
+  [General]
+  EnableNetworkConfiguration=true
+  ```
+- `/etc/resolv.conf`
+  ```
+  nameserver 8.8.8.8
+  ```
+
 To easily enable `pacman` multilib use:
 ```
 sudo sed -i -e '/#\[multilib\]/,+1s/^#//' /etc/pacman.conf
@@ -94,9 +107,11 @@ sudo sed -i -e '/#\[multilib\]/,+1s/^#//' /etc/pacman.conf
 
 Services to enable:
 ```
-sudo systemctl --user enable --now hyprpolkitagent.service
-sudo systemctl --user enable --now sddm.service
-sudo systemctl --user enable --now tuned-ppd.service
+systemctl --user enable --now hyprpolkitagent.service
+sudo systemctl enable --now sddm.service
+sudo systemctl enable --now power-profiles-daemon.service
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now iwd.service
 ```
 
 ## Theming

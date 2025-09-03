@@ -1,0 +1,93 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Noto Sans Mono, sans-serif;
+  min-height: 0;
+}
+
+/* Top bar */
+.top {
+  font-size: 16px;
+}
+
+/* Left bar*/
+.left {
+  font-size: 14px;
+}
+
+/* Modules left ------------------------------------------------------ */
+
+#custom-launcher {
+  border: 1px solid red;
+}
+
+#taskbar {
+  border: 1px solid blue;
+}
+
+#window {
+  border: 1px solid yellow;
+}
+
+/* Modules center ---------------------------------------------------- */
+
+#workspaces {
+  border: 1px solid magenta;
+}
+
+#workspaces button.active {
+  color: red;
+}
+
+/* Modules right ----------------------------------------------------- */
+/* Sound */
+#pavucontrol {
+  margin-right: 5px;
+}
+
+/* Hardware */
+#hardware {
+  border: 1px solid green;
+}
+
+#cpu,
+#memory,
+#temperature {
+  margin-right: 5px;
+}
+
+/* Connections */
+#connections {
+  border: 1px solid aqua;
+}
+
+#network,
+#bluetooth {
+  margin-right: 5px;
+}
+
+/* Power */
+#power {
+  border: 1px solid firebrick;
+}
+
+#battery,
+#backlight,
+#power-profiles-daemon {
+  margin-right: 5px;
+}
+
+/* Language */
+#language {
+  margin-right: 5px;
+}
+
+/* Clock */
+#clock {
+  margin-right: 5px;
+}
+
+/* Custom power button*/
+#custom-power {
+  margin-right: 5px;
+}
