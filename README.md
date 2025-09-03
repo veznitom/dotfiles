@@ -1,34 +1,35 @@
 # Arch Linux Hyprland dotfiles
 This repository contains dotfiles and programs used in my Arch Hyprland setup. The goal is to have fully fledged desktop environment.
 ## Arch Linux Desktop Environment
-| Component                   |                                    | Key bindings |
-| --------------------------- | ---------------------------------- | ------------ |
-| Application launcher        | `rofi-wayland`                     | Super + D    |
-| Audio control               | `cable`, `pipewire`, `wireplumber` |              |
-| Backlight control           | `brightnessctl`                    |              |
-| Display manager             | `sddm`                             |              |
-| Logout dialogue             | `wlogout`                          |              |
-| Notification daemon         | `mako`                             |              |
-| Polkit authentication agent | `hyprpolkitagent`                  |              |
-| Power management            | `poweralertd`                      |              |
-| Screen capture              | `grim`                             |              |
-| Screen locker               | `hyprlock`, `hypridle`             | Super + L    |
-| Screen temperature          | `hyprsunset`                       |              |
-| Shell                       | `fish`                             |              |
-| Wallpaper setter            | `hyprpaper`                        |              |
+| Component                   |                                    | Key bindings       |
+| --------------------------- | ---------------------------------- | ------------------ |
+| Application launcher        | `rofi-wayland`                     | Super + D          |
+| Audio control               | `cable`, `pipewire`, `wireplumber` |                    |
+| Backlight control           | `brightnessctl`                    |                    |
+| Clipboard manager           | `cliphist`                         |                    |
+| Display manager             | `sddm`                             |                    |
+| Logout dialogue             | `wlogout`                          |                    |
+| Notification daemon         | `mako`                             |                    |
+| Polkit authentication agent | `hyprpolkitagent`                  |                    |
+| Power control               | `tuned-ppd`                        |                    |
+| Power management            | `poweralertd`                      |                    |
+| Taskbar                     | `waybar`                           | Super + M (reload) |
+| Terminal emulator           | `kitty`                            | Super + Return     |
+| Screen capture              | `grim`                             |                    |
+| Screen locker               | `hyprlock`, `hypridle`             | Super + L          |
+| Screen temperature          | `hyprsunset`                       |                    |
+| Shell                       | `fish`                             |                    |
+| Wallpaper setter            | `hyprpaper`                        |                    |
 
-### Additional Core applications
-| Category            |                      | Key bindings       |
-| ------------------- | -------------------- | ------------------ |
-| Taskbar             | `waybar`             | Super + M (reload) |
-| Terminal emulator   | `kitty`              | Super + Return     |
-| File manager        | `dolphin` (`ark`)    | Super + A          |
-| Text editor         | `visual-studio-code` | Super + E          |
-| Internet browser    | `firefox`            | Super + B          |
-| Clipboard manager   | `cliphist`           |                    |
-| Document viewer     | `okular`             |                    |
-| Office applications | `libreoffice-fresh`  |                    |
-| Power control       | `tuned-ppd`          |                    |
+### Additional applications
+| Category             |                      | Key bindings |
+| -------------------- | -------------------- | ------------ |
+| File manager         | `dolphin` (`ark`)    | Super + A    |
+| Text editor          | `visual-studio-code` | Super + E    |
+| Internet browser     | `firefox`            | Super + B    |
+| Document viewer      | `okular`             |              |
+| Office applications  | `libreoffice-fresh`  |              |
+| Boot manager theming | `plymouth`           |              |
 
 ### Requirements
 A notification daemon, `pipewire`, `wireplumber`, `xdg-desktop-portal-hyprland`, authentication agent, `qt5-wayland`, `qt6-wayland`, `noto-fonts`.
@@ -125,7 +126,7 @@ As an icon theme I use Papirus.
 | Mouse:middle                 | Move window                 |
 
 ## Installation
-To simplify setup there is a application install script `install.sh`.
+To simplify setup there is a application install script `install.sh` for core applications and `install-rest.sh`.
 ### Requirements
 As not all applications are available only in AUR an AUR helper is needed. In this case I use `yay`.
 
