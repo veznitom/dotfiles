@@ -1,3 +1,5 @@
+@import url("../../.cache/wal/colors-waybar.css");
+
 * {
   border: none;
   border-radius: 0;
@@ -5,89 +7,135 @@
   min-height: 0;
 }
 
-/* Top bar */
+/* Top bar ---------------------------------------------------------*/
 .top {
   font-size: 16px;
+  background-color: @background;
+  border-top: 2px solid @color9;
+  border-bottom: 2px solid @color9;
+  border-left: 2px solid @background;
 }
 
-/* Left bar*/
+/* Modules left ------------------- */
+#custom-launcher,
+#taskbar,
+#window {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 5px;
+
+  background-color: @background;
+  color: @foreground;
+}
+
+/* Modules center ------------------ */
+#clock {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 5px;
+
+  background-color: @background;
+  color: @foreground;
+}
+
+/* Modules right  ------------------ */
+#custom-power {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 5px;
+
+  background-color: @background;
+  color: @foreground;
+}
+
+/* Left bar ---------------------------------------------------------*/
 .left {
   font-size: 14px;
+  background-color: @background;
+  border-left: 2px solid @color9;
+  border-right: 2px solid @color9;
 }
 
-/* Modules left ------------------------------------------------------ */
+/* Modules left   ------------------- */
 
-#custom-launcher {
-  border: 1px solid red;
+#custom-logo {
+  margin-top: 15px;
+  font-size: 20px;
+  color: @color7;
 }
 
-#taskbar {
-  border: 1px solid blue;
-}
-
-#window {
-  border: 1px solid yellow;
-}
-
-/* Modules center ---------------------------------------------------- */
-
+/* Modules center ------------------- */
 #workspaces {
-  border: 1px solid magenta;
+  font-size: large;
+}
+
+#workspaces button {
+  border: 2px solid transparent;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: @foreground;
 }
 
 #workspaces button.active {
-  color: red;
+  color: @color9;
+  border-bottom: 2px solid @color9;
 }
 
-/* Modules right ----------------------------------------------------- */
+/* Modules right ------------------- */
 /* Sound */
-#pavucontrol {
-  margin-right: 5px;
+#pulseaudio {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 2px solid @color9;
+  border-bottom: 2px solid @color9;
+  color: @foreground;
 }
 
 /* Hardware */
 #hardware {
-  border: 1px solid green;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid @color9;
+  color: @foreground;
 }
 
 #cpu,
 #memory,
-#temperature {
-  margin-right: 5px;
-}
+#temperature {}
 
 /* Connections */
 #connections {
-  border: 1px solid aqua;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid @color9;
+  color: @foreground;
 }
 
 #network,
-#bluetooth {
-  margin-right: 5px;
-}
+#bluetooth {}
 
 /* Power */
 #power {
-  border: 1px solid firebrick;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid @color9;
+  color: @foreground;
 }
 
 #battery,
 #backlight,
-#power-profiles-daemon {
-  margin-right: 5px;
-}
+#power-profiles-daemon {}
 
 /* Language */
 #language {
-  margin-right: 5px;
-}
-
-/* Clock */
-#clock {
-  margin-right: 5px;
-}
-
-/* Custom power button*/
-#custom-power {
-  margin-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  color: @foreground;
 }

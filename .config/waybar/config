@@ -10,8 +10,8 @@
     "layer": "top",
     "position": "top",
     "margin-top": 5,
-    "margin-left": 10,
-    "margin-right": 10,
+    "margin-left": -2,
+    "margin-right": 0,
     "margin-bottom": 0,
     "reload_style_on_change": true,
     // ------------------------------------------------------------------
@@ -42,7 +42,7 @@
       "on-click": "activate"
     },
     "clock": {
-      "format": "{:%H:%M-%d/%m/%y}",
+      "format": "{:%H:%M %d/%m/%y}",
       "format-alt": "{:%A %B}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "calendar": {
@@ -85,24 +85,26 @@
     // General settings
     // ------------------------------------------------------------------
     "name": "left",
-    "layer": "top",
+    "layer": "bottom",
     "position": "left",
     "output": "eDP-1",
-    "margin-top": 5,
-    "margin-left": 10,
+    "margin-top": 0,
+    "margin-left": 5,
     "margin-right": 0,
-    "margin-bottom": 5,
+    "margin-bottom": 0,
     "reload_style_on_change": true,
     // ------------------------------------------------------------------
     // Left modules
     // ------------------------------------------------------------------
     "modules-left": [
-      "hyprland/workspaces"
+      "custom/logo"
     ],
     // ------------------------------------------------------------------
     // Center modules
     // ------------------------------------------------------------------
-    "modules-center": [],
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
     // ------------------------------------------------------------------
     // Right modules
     // ------------------------------------------------------------------
@@ -124,10 +126,12 @@
       "on-click": "pwvucontrol"
     },
     "cpu": {
-      "format": "\uf4bc {usage:>3}%"
+      "format": "\uf4bc {usage:>3}%",
+      "interval": 1
     },
     "memory": {
-      "format": "\uefc5 {percentage:>3}%"
+      "format": "\uefc5 {percentage:>3}%",
+      "interval": 1
     },
     "temperature": {
       "thermal-zone": "/sys/class/thermal/thermal_zone0/temp",
@@ -187,7 +191,17 @@
     // ------------------------------------------------------------------
     "hyprland/workspaces": {
       "format": "{icon}",
-      "on-click": "activate"
+      "on-click": "activate",
+      "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+      },
+      //"format-icons": {
+      //  "active": "X"
+      //}
     },
     "hyprland/language": {
       "format": "\udb80\udf0c {short}"
@@ -195,6 +209,9 @@
     // ------------------------------------------------------------------
     // Custom modules
     // ------------------------------------------------------------------
+    "custom/logo": {
+      "format": "\udb82\udcc7"
+    },
     // ------------------------------------------------------------------
     // Module groups
     // ------------------------------------------------------------------
