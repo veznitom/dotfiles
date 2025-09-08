@@ -1,216 +1,193 @@
-@import url("../../.cache/wal/colors-waybar.css");
+/* ============================
+     Base UI
+  ============================ */
+@define-color bg #232629;
+/* Main background */
+@define-color bg-alt #31363b;
+/* Inactive/secondary background */
+@define-color surface #fcfcfc;
+/* Bright surfaces (tooltips, floating panels) */
+@define-color border #4d4d4d;
+/* Window/divider borders */
+
+/* Text */
+@define-color fg #eff0f1;
+/* Normal text */
+@define-color fg-inactive #bdc3c7;
+/* Inactive/disabled text */
+@define-color fg-on-accent #ffffff;
+/* Text on highlights */
+
+/* ============================
+     Window States
+  ============================ */
+@define-color window-active #3daee9;
+/* Active window border */
+@define-color window-inactive #31363b;
+/* Inactive window border */
+@define-color window-urgent #da4453;
+/* Urgent window border (error red) */
+@define-color window-focus #8ab4f8;
+/* Focus ring / strong highlight */
+
+/* ============================
+     Accents & Highlights
+  ============================ */
+@define-color accent #3daee9;
+/* Primary accent (active UI) */
+@define-color accent-dark #2679a8;
+/* Selection background */
+@define-color accent-purple #a347ba;
+/* Secondary accent / visited */
+@define-color link #2980b9;
+/* Hyperlinks */
+
+/* ============================
+     Semantic Colors
+  ============================ */
+@define-color success #27ae60;
+/* Success / Ok */
+@define-color warning #f67400;
+/* Warning / Attention */
+@define-color error #da4453;
+/* Error / Critical */
+@define-color info #1abc9c;
+/* Info / Neutral */
 
 * {
-  border: none;
-  border-radius: 0;
-  font-family: Maple Mono, Noto Sans Mono, Ubuntu Nerd Font, sans-serif;
-  font-size: large;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family:
+        Maple Mono,
+        Noto Sans Mono,
+        Ubuntu Nerd Font,
+        sans-serif;
+    font-size: large;
+    min-height: 0;
 }
 
 /* ------------------------------------ Bar ------------------------------------ */
-.top {
-  background-color: transparent;
+.notebook {
+    background-color: @bg;
+    color: @fg;
+
+    border-bottom: 4px solid @accent-dark;
 }
 
 /* ------------------------------------ Sections ------------------------------------ */
 .modules-left {}
 
-.modules-center {
-  border: 4px solid @color9;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @background;
-  color: @foreground;
-}
+.modules-center {}
 
 .modules-right {}
 
-/* ------------------------------------ Build-in ------------------------------------ */
-#battery {}
-
-#backlight {}
-
-#bluetooth {}
-
-#clock.time {}
-
-#clock.date {}
-
-#cpu {}
-
-#disk {}
-
-#memory {}
-
-#network {}
-
-#taskbar {}
-
-#power-profiles-daemon {}
-
-#pulseaudio {
-  margin-right: 10px;
-}
-
-#pulseaudio-slider {
-  padding: 0;
-  margin: 0;
-  background-image: none;
-}
-
-#pulseaudio-slider slider {
-  background-image: none;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-#pulseaudio-slider trough {
-  background-image: none;
-  min-height: 10px;
-  min-width: 100px;
-  border-radius: 15px;
-  background-color: @color8;
-}
-
-#pulseaudio-slider highlight {
-  background-image: none;
-  min-width: 10px;
-  border-radius: 15px;
-  background-color: @color4;
-}
-
-#temperature {}
-
+/* ------------------------------------ Modules ------------------------------------ */
+#battery,
+#pulseaudio,
+#language,
 #tray {
-  border: 4px solid @color9;
-  border-radius: 15px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+    border-top: 2px solid @accent-purple;
+    border-right: 2px solid @accent-purple;
+    border-bottom: 2px solid @accent-purple;
 
-  background-color: @background;
-  color: @foreground;
+    color: @fg;
 }
 
-/* ------------------------------------ Hyprland ------------------------------------ */
-#language {
-  border: 4px solid @color9;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @background;
-  color: @foreground;
+#battery.warning {
+    color: @warning;
 }
 
-#window {}
+#battery.critical {
+    color: @error;
+}
 
-#workspaces {}
+#clock.time,
+#clock.date {
+    background-color: @accent-dark;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid @accent-dark;
+}
+
+#clock.time {
+    color: @fg-on-accent;
+}
+
+#clock.date {
+    color: @bg;
+}
+
+#window {
+    color: @fg-inactive;
+}
+
+#workspaces {
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+
+    border: 2px solid @accent-purple;
+}
 
 #workspaces button {
-  color: @foreground;
+    padding-top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0;
+    color: @fg-inactive;
+}
+
+#workspaces button.default {
+    color: @fg-inactive;
+}
+
+#workspaces button.urgent {
+    color: @warning;
 }
 
 #workspaces button.active {
-  color: @color9;
+    color: @fg-on-accent;
+    background-color: @accent-purple;
 }
 
 /* ------------------------------------ Custom ------------------------------------ */
-#custom-launcher {
-  font-size: 25px;
-  color: @color95;
+#custom-launcher,
+#custom-power {
+    font-size: 20px;
+    background-color: @accent-dark;
+    color: @bg;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid @accent-dark;
 }
 
-#custom-power {
-  border: 4px solid @color3;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @color3;
-  color: @color0;
+#custom-audio,
+#custom-battery,
+#custom-language,
+#custom-tray {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: @accent-purple;
 }
 
 /* ------------------------------------ Groups ------------------------------------ */
-#audio {
-  border: 4px solid @color9;
-  border-radius: 15px;
+#audio {}
 
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+#time {}
 
-  background-color: @background;
-  color: @foreground;
-}
-
-#time {
-  border: 4px solid @color9;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @background;
-  color: @foreground;
-}
-
-#hardware {
-  border: 4px solid @color9;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @background;
-  color: @foreground;
-}
+#hardware {}
 
 #connections {}
 
-#power {
-  border: 4px solid @color9;
-  border-radius: 15px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  background-color: @background;
-  color: @foreground;
-}
+#power {}

@@ -1,9 +1,0 @@
-@import url("../../.cache/wal/colors.css");
-
-*{
-  background-color: transparent;
-}
-
-#lock {
-  background-color: red;
-}
