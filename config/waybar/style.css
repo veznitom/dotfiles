@@ -3,139 +3,214 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Noto Sans Mono, sans-serif;
+  font-family: Maple Mono, Noto Sans Mono, Ubuntu Nerd Font, sans-serif;
+  font-size: large;
   min-height: 0;
 }
 
-/* Top bar ---------------------------------------------------------*/
+/* ------------------------------------ Bar ------------------------------------ */
 .top {
-  font-size: 16px;
-  background-color: @background;
-  border-top: 2px solid @color9;
-  border-bottom: 2px solid @color9;
-  border-left: 2px solid @background;
+  background-color: transparent;
 }
 
-/* Modules left ------------------- */
-#custom-launcher,
-#taskbar,
-#window {
+/* ------------------------------------ Sections ------------------------------------ */
+.modules-left {}
+
+.modules-center {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
   margin-left: 5px;
   margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   background-color: @background;
   color: @foreground;
 }
 
-/* Modules center ------------------ */
-#clock {
+.modules-right {}
+
+/* ------------------------------------ Build-in ------------------------------------ */
+#battery {}
+
+#backlight {}
+
+#bluetooth {}
+
+#clock.time {}
+
+#clock.date {}
+
+#cpu {}
+
+#disk {}
+
+#memory {}
+
+#network {}
+
+#taskbar {}
+
+#power-profiles-daemon {}
+
+#pulseaudio {
+  margin-right: 10px;
+}
+
+#pulseaudio-slider {
+  padding: 0;
+  margin: 0;
+  background-image: none;
+}
+
+#pulseaudio-slider slider {
+  background-image: none;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+  background-image: none;
+  min-height: 10px;
+  min-width: 100px;
+  border-radius: 15px;
+  background-color: @color8;
+}
+
+#pulseaudio-slider highlight {
+  background-image: none;
+  min-width: 10px;
+  border-radius: 15px;
+  background-color: @color4;
+}
+
+#temperature {}
+
+#tray {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
   margin-left: 5px;
   margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   background-color: @background;
   color: @foreground;
 }
 
-/* Modules right  ------------------ */
-#custom-power {
+/* ------------------------------------ Hyprland ------------------------------------ */
+#language {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
   margin-left: 5px;
   margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   background-color: @background;
   color: @foreground;
 }
 
-/* Left bar ---------------------------------------------------------*/
-.left {
-  font-size: 14px;
-  background-color: @background;
-  border-left: 2px solid @color9;
-  border-right: 2px solid @color9;
-}
+#window {}
 
-/* Modules left   ------------------- */
-
-#custom-logo {
-  margin-top: 15px;
-  font-size: 20px;
-  color: @color7;
-}
-
-/* Modules center ------------------- */
-#workspaces {
-  font-size: large;
-}
+#workspaces {}
 
 #workspaces button {
-  border: 2px solid transparent;
-  margin-left: 20px;
-  margin-right: 20px;
   color: @foreground;
 }
 
 #workspaces button.active {
   color: @color9;
-  border-bottom: 2px solid @color9;
 }
 
-/* Modules right ------------------- */
-/* Sound */
-#pulseaudio {
+/* ------------------------------------ Custom ------------------------------------ */
+#custom-launcher {
+  font-size: 25px;
+  color: @color95;
+}
+
+#custom-power {
+  border: 4px solid @color3;
+  border-radius: 15px;
+
+  margin-left: 5px;
+  margin-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-top: 2px solid @color9;
-  border-bottom: 2px solid @color9;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background-color: @color3;
+  color: @color0;
+}
+
+/* ------------------------------------ Groups ------------------------------------ */
+#audio {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background-color: @background;
   color: @foreground;
 }
 
-/* Hardware */
+#time {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background-color: @background;
+  color: @foreground;
+}
+
 #hardware {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
+  margin-left: 5px;
+  margin-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background-color: @background;
   color: @foreground;
 }
 
-#cpu,
-#memory,
-#temperature {}
+#connections {}
 
-/* Connections */
-#connections {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
-}
-
-#network,
-#bluetooth {}
-
-/* Power */
 #power {
+  border: 4px solid @color9;
+  border-radius: 15px;
+
+  margin-left: 5px;
+  margin-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
-}
+  padding-left: 10px;
+  padding-right: 10px;
 
-#battery,
-#backlight,
-#power-profiles-daemon {}
-
-/* Language */
-#language {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
+  background-color: @background;
   color: @foreground;
 }

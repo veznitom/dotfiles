@@ -1,242 +1,222 @@
-[
+{
   // ------------------------------------------------------------------
-  // Top bar
+  // General settings
   // ------------------------------------------------------------------
-  {
-    // ------------------------------------------------------------------
-    // General settings
-    // ------------------------------------------------------------------
-    "name": "top",
-    "layer": "top",
-    "position": "top",
-    "margin-top": 5,
-    "margin-left": -2,
-    "margin-right": 0,
-    "margin-bottom": 0,
-    "reload_style_on_change": true,
-    // ------------------------------------------------------------------
-    // Left modules
-    // ------------------------------------------------------------------
-    "modules-left": [
-      "custom/launcher",
-      "wlr/taskbar",
-      "hyprland/window"
-    ],
-    // ------------------------------------------------------------------
-    // Center modules
-    // ------------------------------------------------------------------
-    "modules-center": [
-      "clock"
-    ],
-    // ------------------------------------------------------------------
-    // Right modules
-    // ------------------------------------------------------------------
-    "modules-right": [
-      "custom/power"
-    ],
-    // ------------------------------------------------------------------
-    // Build-in modules
-    // ------------------------------------------------------------------
-    "wlr/taskbar": {
-      "format": "{icon}",
-      "on-click": "activate"
+  "name": "top",
+  "layer": "top",
+  "position": "top",
+  "margin": "10 10 0 10",
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  // ------------------------------------------------------------------
+  // Modules layout
+  // ------------------------------------------------------------------
+  "modules-left": [
+    "group/time",
+    "group/hardware"
+  ],
+  "modules-center": [
+    "custom/launcher",
+    "custom/divider",
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "group/audio",
+    "hyprland/language",
+    "group/power",
+    "tray",
+    "custom/power"
+  ],
+  // ------------------------------------------------------------------
+  // Build-in modules
+  // ------------------------------------------------------------------
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ]
+  },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "AC0",
+    "interval": 10,
+    "format": "{icon}",
+    "tooltip-format": "{capacity}%, {time}",
+    "format-icons": {
+      "full": "󰁹",
+      "fullish": "󰂀",
+      "half": "󰁾",
+      "warning": "󰁻",
+      "urgent": "󰂃",
+      "critical": "󱟨"
     },
-    "clock": {
-      "format": "{:%H:%M %d/%m/%y}",
-      "format-alt": "{:%A %B}",
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "calendar": {
-        "mode": "year",
-        "mode-mon-col": 3,
-        "weeks-pos": "right",
-        "on-scroll": 1,
-        "format": {
-          "months": "<span><b>{}</b></span>",
-          "days": "<span><b>{}</b></span>",
-          "weeks": "<span><b>W{}</b></span>",
-          "weekdays": "<span><b>{}</b></span>",
-          "today": "<span><b><u>{}</u></b></span>"
-        }
-      }
-    },
-    // ------------------------------------------------------------------
-    // Hyprland modules
-    // ------------------------------------------------------------------
-    "hyprland/window": {
-      "format": "{initialTitle}"
-    },
-    // ------------------------------------------------------------------
-    // Custom modules
-    // ------------------------------------------------------------------
-    "custom/launcher": {
-      "format": "Apps",
-      "on-click": "rofi -show drun"
-    },
-    "custom/power": {
-      "format": "Power",
-      "on-click": "wlogout"
+    "states": {
+      "full": 100,
+      "fullish": 75,
+      "half": 50,
+      "warning": 25,
+      "urgent": 15,
+      "critical": 5
     }
   },
-  // ------------------------------------------------------------------
-  // Left bar
-  // ------------------------------------------------------------------
-  {
-    // ------------------------------------------------------------------
-    // General settings
-    // ------------------------------------------------------------------
-    "name": "left",
-    "layer": "bottom",
-    "position": "left",
-    "output": "eDP-1",
-    "margin-top": 0,
-    "margin-left": 5,
-    "margin-right": 0,
-    "margin-bottom": 0,
-    "reload_style_on_change": true,
-    // ------------------------------------------------------------------
-    // Left modules
-    // ------------------------------------------------------------------
-    "modules-left": [
-      "custom/logo"
-    ],
-    // ------------------------------------------------------------------
-    // Center modules
-    // ------------------------------------------------------------------
-    "modules-center": [
-      "hyprland/workspaces"
-    ],
-    // ------------------------------------------------------------------
-    // Right modules
-    // ------------------------------------------------------------------
-    "modules-right": [
-      "pulseaudio",
-      "group/hardware",
-      "group/connections",
-      "group/power",
-      "hyprland/language"
-      //"tray"
-    ],
-    // ------------------------------------------------------------------
-    // Build-in modules
-    // ------------------------------------------------------------------
-    "pulseaudio": {
-      "format": "\uf028 {volume:>3}%",
-      "format-muted": "\ueee8",
-      "format-bluetooth": "\udb82\udd70 {volume}%",
-      "on-click": "pwvucontrol"
-    },
-    "cpu": {
-      "format": "\uf4bc {usage:>3}%",
-      "interval": 1
-    },
-    "memory": {
-      "format": "\uefc5 {percentage:>3}%",
-      "interval": 1
-    },
-    "temperature": {
-      "thermal-zone": "/sys/class/thermal/thermal_zone0/temp",
-      "format": "\uef2a {temperatureC:>3}",
-      "interval": 1
-    },
-    "network": {
-      "interface": "wlan0",
-      "format-ethernet": "\udb80\ude00",
-      "tooltip-format": "{ifname} {ipaddr}",
-      "format-wifi": "\udb81\udda9",
-      "tooltip-format-wifi": "{ifname} {essid} {ipaddr}",
-      "format-disconnected": "\udb81\uddaa",
-      "on-click": "iwgtk"
-    },
-    "bluetooth": {
-      "format": "\uf293",
-      "format-disabled": "\uf293",
-      "on-click": "blueman-manager"
-    },
-    "backlight": {
-      "format": "{icon} {percent}%",
-      "format-icons": [
-        "\udb80\udcde",
-        "\udb80\udcdf",
-        "\udb80\udce0"
-      ]
-    },
-    "battery": {
-      "bat": "BAT0",
-      "adapter": "AC0",
-      "format": "{icon} {capacity}%",
-      "format-icons": [
-        "\udb80\udc7a",
-        "\udb80\udc7e",
-        "\udb80\udc79"
-      ]
-    },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}",
-      "tooltip": true,
-      "format-icons": {
-        "performance": "\udb85\udc0b",
-        "balanced": "\uf24e",
-        "power-saver": "\udb80\udf2a"
-      }
-    },
-    "tray": {
-      "icons": {
-        "blueman": "",
-        "iwgtk": ""
-      }
-    },
-    // ------------------------------------------------------------------
-    // Hyprland modules
-    // ------------------------------------------------------------------
-    "hyprland/workspaces": {
-      "format": "{icon}",
-      "on-click": "activate",
-      "persistent-workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": []
-      },
-      //"format-icons": {
-      //  "active": "X"
-      //}
-    },
-    "hyprland/language": {
-      "format": "\udb80\udf0c {short}"
-    },
-    // ------------------------------------------------------------------
-    // Custom modules
-    // ------------------------------------------------------------------
-    "custom/logo": {
-      "format": "\udb82\udcc7"
-    },
-    // ------------------------------------------------------------------
-    // Module groups
-    // ------------------------------------------------------------------
-    "group/hardware": {
-      "orientation": "vertical",
-      "modules": [
-        "cpu",
-        "memory",
-        "temperature"
-      ]
-    },
-    "group/connections": {
-      "orientation": "vertical",
-      "modules": [
-        "network",
-        "bluetooth"
-      ]
-    },
-    "group/power": {
-      "orientation": "vertical",
-      "modules": [
-        "power-profiles-daemon",
-        "battery",
-        "backlight"
-      ]
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "on-click": "blueman-manager"
+  },
+  "clock#time": {
+    "format": "{:%H:%M}"
+  },
+  "clock#date": {
+    "format": "{:%A, %B %d}"
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 10,
+    "on-click": "kitty btop"
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "path": "/"
+  },
+  "memory": {
+    "format": " {percentage}%",
+    "interval": 10
+  },
+  "network": {
+    "interface": "wlan0",
+    "format-ethernet": "\udb80\ude00",
+    "tooltip-format": "{ifname} {ipaddr}",
+    "format-wifi": "\udb81\udda9",
+    "tooltip-format-wifi": "{ifname} {essid} {ipaddr}",
+    "format-disconnected": "\udb81\uddaa",
+    "on-click": "iwgtk"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "󰗑",
+      "performance": "󱐋",
+      "balanced": "󰗑",
+      "power-saver": "󰌪"
     }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " ",
+    "format-bluetooth": "󰥰 {volume}%",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
+    "on-click": "pwvucontrol"
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "temperature": {
+    "thermal-zone": "/sys/class/thermal/thermal_zone0/temp",
+    "format": " {temperatureC}",
+    "interval": 10
+  },
+  "tray": {
+    "spacing": 10,
+    "icon-size": 16,
+    "show-passive-items": true
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "on-click": "activate"
+  },
+  // ------------------------------------------------------------------
+  // Hyprland modules
+  // ------------------------------------------------------------------
+  "hyprland/window": {
+    "format": "{initialTitle}",
+    "icon": true
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "*": 3
+    }
+  },
+  "hyprland/language": {
+    "format": " {short}"
+  },
+  // ------------------------------------------------------------------
+  // Custom modules
+  // ------------------------------------------------------------------
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout"
+  },
+  "custom/divider": {
+    "format": " | "
+  },
+  "custom/launcher": {
+    "format": "󰣇",
+    "on-click": "rofi -show drun"
+  },
+  // ------------------------------------------------------------------
+  // Module groups
+  // ------------------------------------------------------------------
+  "group/time": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock#time",
+      "custom/divider",
+      "clock#date"
+    ]
+  },
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "custom/divider",
+      "memory",
+      "custom/divider",
+      "temperature",
+      "custom/divider",
+      "disk"
+    ]
+  },
+  "group/power": {
+    "orientation": "horizontal",
+    "modules": [
+      "power-profiles-daemon",
+      "custom/divider",
+      "backlight",
+      "custom/divider",
+      "battery"
+    ]
+  },
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
   }
-]
+}
