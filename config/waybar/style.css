@@ -107,6 +107,14 @@
     color: @error;
 }
 
+#battery.charging {
+    color: @info;
+}
+
+#pulseaudio.muted {
+    color: @fg-inactive;
+}
+
 #clock.time,
 #clock.date {
     background-color: @accent-dark;
