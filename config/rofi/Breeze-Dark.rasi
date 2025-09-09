@@ -1,0 +1,176 @@
+/*
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│ window {BOX:vertical}                                                              │
+│ ┌───────────────────────────────────────────────────────────────────────────────┐  │
+│ │ mainbox  {BOX:vertical}                                                       │  │
+│ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+│ │ │ inputbar {BOX:horizontal}                                                 │ │  │
+│ │ │ ┌─────────┐ ┌─┐ ┌───────────────────────────────┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ │ │  │
+│ │ │ │ prompt  │ │:│ │ entry                         │ │#fr│ │ / │ │#ns│ │ci │ │ │  │
+│ │ │ └─────────┘ └─┘ └───────────────────────────────┘ └───┘ └───┘ └───┘ └───┘ │ │  │
+│ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+│ │                                                                               │  │
+│ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+│ │ │ message                                                                   │ │  │
+│ │ │ ┌───────────────────────────────────────────────────────────────────────┐ │ │  │
+│ │ │ │ textbox                                                               │ │ │  │
+│ │ │ └───────────────────────────────────────────────────────────────────────┘ │ │  │
+│ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+│ │                                                                               │  │
+│ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+│ │ │ listview                                                                  │ │  │
+│ │ │ ┌─────────────────────────────────────────────────────────────────────┐   │ │  │
+│ │ │ │ element                                                             │   │ │  │
+│ │ │ │ ┌─────────────────┐ ┌─────────────────────────────────────────────┐ │   │ │  │
+│ │ │ │ │element─icon     │ │element─text                                 │ │   │ │  │
+│ │ │ │ └─────────────────┘ └─────────────────────────────────────────────┘ │   │ │  │
+│ │ │ └─────────────────────────────────────────────────────────────────────┘   │ │  │
+│ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+│ │                                                                               │  │
+│ │ ┌───────────────────────────────────────────────────────────────────────────┐ │  │
+│ │ │  mode─switcher {BOX:horizontal}                                           │ │  │
+│ │ │ ┌───────────────┐   ┌───────────────┐  ┌──────────────┐ ┌───────────────┐ │ │  │
+│ │ │ │ Button        │   │ Button        │  │ Button       │ │ Button        │ │ │  │
+│ │ │ └───────────────┘   └───────────────┘  └──────────────┘ └───────────────┘ │ │  │
+│ │ └───────────────────────────────────────────────────────────────────────────┘ │  │
+│ └───────────────────────────────────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────────────────────────────────┘
+*/
+* {
+    background: #232629;
+    background-alt: #31363b;
+
+    foreground: #eff0f1;
+    foreground-alt: #ffffff;
+    foreground-active: #1abc9c;
+    foreground-active-alt: #27ae60;
+    foreground-urgent: #f67400;
+    foreground-urgent-alt: #da4453;
+
+    border-active: #3daee9;
+    border-inactive: #31363b;
+
+    accent: #3daee9;
+    accent-alt: #a347ba;
+    accent-dark: #2679a8;
+}
+
+// ---------------------------------------------------------------------------
+window {
+    background-color: @background;
+    border: 4;
+    border-color: @border-active;   
+    padding: 5;
+}
+mainbox {
+    background-color: @background;
+    padding: 5;
+}
+
+// ---------------------------------------------------------------------------
+inputbar {
+    children:   [ prompt,entry];
+    background-color: @accent-alt;
+    border: 0 0 2 0;
+    border-color: @accent-alt;
+}
+prompt {
+    background-color: @accent-alt;
+    color: @foreground-alt;
+    padding: 4;
+}
+entry {
+    background-color: @background-alt;
+    color: @foreground;
+    padding: 4;
+}
+
+// ---------------------------------------------------------------------------
+message {
+    background-color: @background;
+    color: @foreground;
+    padding: 5;
+}
+textbox {
+    background-color: @background;
+    color: @foreground;
+}
+
+// ---------------------------------------------------------------------------
+listview {
+    background-color: @background;
+    scrollbar: true;
+}
+element {
+    background-color: @background;
+}
+element-text {
+    background-color: transparent;
+    color: @foreground;
+    padding: 2;
+}
+element-icon {
+    background-color: transparent;
+    padding: 2;
+}
+
+element.normal.normal {
+    background-color: @background;
+    color: @foreground;
+}
+element.normal.urgent {
+    background-color: @foreground-urgent;
+    color: @background;
+}
+element.normal.active {
+    background-color: @foreground-active;
+    color: @background;
+}
+
+element.selected.normal,
+element.selected.urgent,
+element.selected.active {
+    background-color: @accent-dark;
+}
+element-text.selected.normal {
+    color: @foreground-alt;
+}
+element-text.selected.urgent {
+    color: @foreground-urgent;
+}
+element-text.selected.active {
+    color: @foreground-active;
+}
+
+element.alternate.normal {
+    background-color: @background-alt;
+}
+element.alternate.urgent {
+    background-color: @foreground-urgent;
+    color: @background;
+}
+element.alternate.active {
+    background-color: @foreground-active;
+    color: @background;
+}
+scrollbar {
+    background-color: @background-alt;
+    handle-width: 10;
+    handle-color: @accent;
+    border-color: @accent-alt;
+}
+
+// ---------------------------------------------------------------------------
+mode-switcher {
+    background-color: @accent-alt;
+    border: 2 0 0 0;
+    border-color: @accent-alt;
+}
+button {
+    background-color: @background-alt;
+    color: @foreground;
+}
+button.selected {
+    background-color: @accent-alt;
+    color: @foreground-alt;
+}

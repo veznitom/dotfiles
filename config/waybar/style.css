@@ -142,11 +142,8 @@
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 0;
-    color: @fg-inactive;
-}
-
-#workspaces button.default {
-    color: @fg-inactive;
+    color: @fg-on-accent;
+    background-color: @bg-alt;
 }
 
 #workspaces button.urgent {
@@ -156,6 +153,11 @@
 #workspaces button.active {
     color: @fg-on-accent;
     background-color: @accent-purple;
+}
+
+#workspaces button.empty {
+    color: @fg-inactive;
+    background-color: @bg;
 }
 
 /* ------------------------------------ Custom ------------------------------------ */

@@ -1,1 +1,36 @@
+configuration {
+    modes: "drun,run,ssh";
+	font: "Maple Mono 12";
+    fixed-num-lines: true;
+    show-icons: true;
+    terminal: "kitty";
+    ssh-client: "ssh";
+    ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+    run-command: "{cmd}";
+    icon-theme: "Papirus-Dark";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    disable-history: true;
+    sort: true;
+    sorting-method: "normal";
+    case-sensitive: false;
+    case-smart: false;
+    cycle: true;
+    sidebar-mode: true;
+    hover-select: false;
+    auto-select: false;
+    matching: "normal";
+    click-to-exit: true;
 
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "Breeze-Dark"
