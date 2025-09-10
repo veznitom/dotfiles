@@ -6,6 +6,8 @@
   font-size: 150%;
 }
 
+
+
 .cpu-l {
   color: #eff0f1;
 }
@@ -37,6 +39,14 @@ trough {
 .pp-perf {
   background-image: none;
   background-color: #232629;
+  color: #eff0f1;
+  border: none;
+  border-radius: 0;
+}
+
+.active {
+  background-image: none;
+  background-color: #a347ba;
   color: #eff0f1;
   border: none;
   border-radius: 0;

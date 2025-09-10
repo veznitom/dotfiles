@@ -1,10 +1,6 @@
 ;; Variables --------------------------------------------------------------------------------------------------------------
-(defpoll POWER-PROFILE :interval "1s" "powerprofilesctl get")
-(defpoll CPU-USED :interval "1s" "mpstat 1 1 | awk '/Average:/ {print 100 - $NF}'")
-(defpoll MEMORY-USED :interval "1s" "free -h | awk '/^Mem:/ {print $3}' | sed 's/[^0-9.]//g'")
-(defpoll MEMORY-MAX :interval "1s" "free -h | awk '/^Mem:/ {print $2}' | sed 's/[^0-9.]//g'")
-(defpoll CPU-TEMP :interval "1s" "sensors | awk '/Core [0-9]+:/ {gsub(/[+°C]/,\"\",$3); sum += $3; count++} END {if (count > 0) printf \"%.1f\", sum / count; else print \"0\"}'")
-
+(defpoll PROFILE :interval "1s" 'powerprofilesctl get')
+(defpoll BRIGHTNESS :interval "1s" 'scripts/brightness-level.sh')
 ;; Widgets --------------------------------------------------------------------------------------------------------------
 
 (defwidget activate-linux []
@@ -19,32 +15,27 @@
 
 (defwidget power-profiles []
   (box :class "pp-container" :orientation "v"
-    (for EWW_TEMPS
-      (label :text it)
-    )
-    (box :orientation "h"
-      (label :hexpand "true" :halign "end"    :class "cpu-l" :text "CPU Usage:")
-      (label :text {cpu:temperature})
-      (progress :class "cpu-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value CPU-USED)
-    )
-    (box :orientation "h"
-      (label :hexpand "true" :halign "end"    :class "mem-l" :text "Memory:")
-      (progress :class "mem-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value MEMORY-USED)
-      (graph :dynamic "false" :min 0 :max MEMORY-MAX :time-range 60.0 :line-style "round" :value MEMORY-USED)
-    )
-    (box :orientation "h"
-      (label :hexpand "true" :halign "end"    :class "cput-l" :text "CPU Temp:")
-      (progress :class "cpu-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value CPU-TEMP)
-    )
-    
+    ;; CPU TEMP
+    (label :text {EWW_TEMPS["CORETEMP_PACKAGE_ID_0"]} :wrap "true" :limit-width "30" :width "100%")
+    ;; CPU USED
+    (label :text {EWW_CPU["avg"]} :wrap "true" :limit-width "30" :width "100%")
+    ;; BATTERY
+    (label :text {EWW_BATTERY["BAT0"]["status"]} :wrap "true" :limit-width "30" :width "100%")
+    (label :text {EWW_BATTERY["BAT0"]["capacity"]} :wrap "true" :limit-width "30" :width "100%")
+    ;; PROFILE
+    (label :text PROFILE :wrap "true" :limit-width "30" :width "100%")
+    (label :text {PROFILE == "performance" ? 'yes' : 'no'} :wrap "true" :limit-width "30" :width "100%")
+    ;; BRIGHTNESS
+    (label :text BRIGHTNESS :wrap "true" :limit-width "30" :width "100%")
+    (progress :value {BRIGHTNESS * 100})
     (box :class "pp-buttons" :orientation "h" :hexpand "true" :space-evenly "true"
-      (button :onclick "scripts/power-save.sh" :vexpand "true" :hexpand "true" :class "pp-save"
+      (button :onclick "scripts/power-save.sh" :vexpand "true" :hexpand "true" :class {PROFILE == "power-saver" ? "active" : "pp-save"}
         (label :class "label-icon" :text "󰌪")
       )
-      (button :onclick "scripts/power-bal.sh" :vexpand "true" :hexpand "true" :class "pp-bal"
+      (button :onclick "scripts/power-bal.sh" :vexpand "true" :hexpand "true" :class {PROFILE == "balanced" ? "active" : "pp-bal"}
         (label :class "label-icon" :text "󰗑")
       )
-      (button :onclick "scripts/power-perf.sh" :vexpand "true" :hexpand "true" :class "pp-perf"
+      (button :onclick "scripts/power-perf.sh" :vexpand "true" :hexpand "true" :class {PROFILE == "performance" ? "active" : "pp-perf"}
         (label :class "label-icon" :text "󱐋")
       )
     )
