@@ -1,3 +1,12 @@
+;; Variables --------------------------------------------------------------------------------------------------------------
+(defpoll POWER-PROFILE :interval "1s" "powerprofilesctl get")
+(defpoll CPU-USED :interval "1s" "mpstat 1 1 | awk '/Average:/ {print 100 - $NF}'")
+(defpoll MEMORY-USED :interval "1s" "free -h | awk '/^Mem:/ {print $3}' | sed 's/[^0-9.]//g'")
+(defpoll MEMORY-MAX :interval "1s" "free -h | awk '/^Mem:/ {print $2}' | sed 's/[^0-9.]//g'")
+(defpoll CPU-TEMP :interval "1s" "sensors | awk '/Core [0-9]+:/ {gsub(/[+°C]/,\"\",$3); sum += $3; count++} END {if (count > 0) printf \"%.1f\", sum / count; else print \"0\"}'")
+
+;; Widgets --------------------------------------------------------------------------------------------------------------
+
 (defwidget activate-linux []
   (box
     :orientation "v"
@@ -5,11 +14,57 @@
     :valign "start"
     (label :xalign 0 :markup "<span font_size=\"large\">Activate Linux</span>")
     (label :xalign 0 :text "Go to Settings to activate Linux")
-))
+  )
+)
+
+(defwidget power-profiles []
+  (box :class "pp-container" :orientation "v"
+    (for EWW_TEMPS
+      (label :text it)
+    )
+    (box :orientation "h"
+      (label :hexpand "true" :halign "end"    :class "cpu-l" :text "CPU Usage:")
+      (label :text {cpu:temperature})
+      (progress :class "cpu-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value CPU-USED)
+    )
+    (box :orientation "h"
+      (label :hexpand "true" :halign "end"    :class "mem-l" :text "Memory:")
+      (progress :class "mem-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value MEMORY-USED)
+      (graph :dynamic "false" :min 0 :max MEMORY-MAX :time-range 60.0 :line-style "round" :value MEMORY-USED)
+    )
+    (box :orientation "h"
+      (label :hexpand "true" :halign "end"    :class "cput-l" :text "CPU Temp:")
+      (progress :class "cpu-bar" :width "50%" :halign "center" :valign "center" :vexpand "false" :hexpand "false" :value CPU-TEMP)
+    )
+    
+    (box :class "pp-buttons" :orientation "h" :hexpand "true" :space-evenly "true"
+      (button :onclick "scripts/power-save.sh" :vexpand "true" :hexpand "true" :class "pp-save"
+        (label :class "label-icon" :text "󰌪")
+      )
+      (button :onclick "scripts/power-bal.sh" :vexpand "true" :hexpand "true" :class "pp-bal"
+        (label :class "label-icon" :text "󰗑")
+      )
+      (button :onclick "scripts/power-perf.sh" :vexpand "true" :hexpand "true" :class "pp-perf"
+        (label :class "label-icon" :text "󱐋")
+      )
+    )
+  )
+)
+
+;; Windows --------------------------------------------------------------------------------------------------------------
 
 (defwindow activate-linux
   :monitor 0
-  :stacking "fg"
+  :stacking "bg"
+  :namespace "eww"
   :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
   (activate-linux)
+)
+
+(defwindow power-profiles
+  :monitor 0
+  :stacking "bg"
+  :namespace "eww"
+  :geometry (geometry :x "2.5%" :y "5%" :width "20%" :height "10%" :anchor "bottom left")
+  (power-profiles)
 )

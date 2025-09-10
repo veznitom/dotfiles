@@ -1,7 +1,61 @@
+.pp-container {
+  background-color: #232629;
+  color: #eff0f1;
+  border: 4px solid #3daee9;
+  padding: 10px;
+  font-size: 150%;
+}
+
+.cpu-l {
+  color: #eff0f1;
+}
+
+.cpu-bar {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, red);
+}
+
+progress {
+  background-color: #3daee9;
+  border-radius: 10px;
+}
+
+trough {
+  background-color: transparent;
+  background-image: none;
+  min-width: 50px;
+}
+
+.pp-buttons {
+  background-color: #31363b;
+  padding: 10px;
+  border: none;
+}
+
+.pp-save,
+.pp-bal,
+.pp-perf {
+  background-image: none;
+  background-color: #232629;
+  color: #eff0f1;
+  border: none;
+  border-radius: 0;
+}
+
+.pp-save:hover,
+.pp-bal:hover,
+.pp-perf:hover {
+  background-color: #3daee9;
+}
+
+.label-icon {
+  font-family: 'Ubuntu Nerd Font';
+  background-color: transparent;
+  border: none;
+}
+
+
 .activate-linux {
   color: rgba(250, 250, 250, 0.5);
-
-  &.background {
-    background: none;
-  }
+  background: transparent;
 }

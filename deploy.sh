@@ -18,12 +18,18 @@ esac
 # ------------------------------------------------------------------------------------
 # Other configs
 # ------------------------------------------------------------------------------------
+mkdir -p ~/.local/share/rofi/themes
+
 cp -r $CONF_DIR/config/waybar  ~/.config/
 cp -r $CONF_DIR/config/kitty   ~/.config/
 cp -r $CONF_DIR/config/nwg-bar ~/.config/
 cp -r $CONF_DIR/config/rofi    ~/.config/
 cp -r $CONF_DIR/config/eww     ~/.config/
+cp    $CONF_DIR/config/rofi/Breeze-Dark.rasi ~/.local/share/rofi/themes/
 
 chmod +x ~/.config/waybar/launch.sh
-mkdir -p ~/.local/share/rofi/themes
-cp $CONF_DIR/config/rofi/Breeze-Dark.rasi ~/.local/share/rofi/themes/
+chmod +x ~/.config/eww/launch.sh
+chmod +x ~/.config/eww/scripts/power-perf.sh
+chmod +x ~/.config/eww/scripts/power-bal.sh
+chmod +x ~/.config/eww/scripts/power-save.sh
+

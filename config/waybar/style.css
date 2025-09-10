@@ -168,6 +168,12 @@
     background-color: @bg;
 }
 
+#workspaces button.empty.active {
+    color: @fg-on-accent;
+    background-color: @accent-purple;
+}
+
+
 /* ------------------------------------ Custom ------------------------------------ */
 #custom-launcher,
 #custom-power {
