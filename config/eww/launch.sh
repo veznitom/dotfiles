@@ -4,4 +4,4 @@ eww kill
 eww daemon
 
 eww open activate-linux
-eww open power-profiles
+eww open widget-wall

@@ -1,4 +1,12 @@
 ;; Variables --------------------------------------------------------------------------------------------------------------
+;; PC stats
+(defpoll OS :interval "999s" 'fastfetch | awk -F: \'/OS/ {print $2}\'')
+(defpoll HOST :interval "999s" 'fastfetch | awk -F: \'/Host/ {print $2}\'')
+(defpoll CPU :interval "999s" 'fastfetch | awk -F: \'/CPU/ {print $2}\'')
+(defpoll KERNEL :interval "999s" 'fastfetch | awk -F: \'/Kernel/ {print $2}\'')
+(defpoll WM :interval "999s" 'fastfetch | awk -F: \'/WM/ {print $2}\'')
+
+;; Status info
 (defpoll PROFILE :interval "1s" 'powerprofilesctl get')
 (defpoll BRIGHTNESS :interval "1s" 'scripts/brightness-level.sh')
 ;; Widgets --------------------------------------------------------------------------------------------------------------
@@ -13,21 +21,57 @@
   )
 )
 
+(defwidget pc-info []
+  (box :class "pc-info" :orientation "v" :space-evenly "false"
+    (box :class "pci-header" :orientation "h" :space-evenly "false" :hexpand "true"
+      (label :class "pci-icon-h" :text ""  :hexpand "false" :halign "start")
+      (box :class "pci-label-b" :width "100%" :hexpand "true"
+        (label :class "pci-label-h" :text HOST :hexpand "true" :halign "start")
+      )
+    )
+    ;;
+    (box :class "pci-box" :orientation "v"
+      (box :class "pci-record" :orientation "h" :space-evenly "false"
+        (label :class "pci-icon" :text "" :hexpand "false" :halign "start")
+        (label :class "pci-label" :text OS :hexpand "true"  :halign "start")
+      )
+      (box :class "pci-record" :orientation "h" :space-evenly "false"
+        (label :class "pci-icon" :text "" :hexpand "false" :halign "start")
+        (label :class "pci-label" :text KERNEL :hexpand "true"  :halign "start")
+      )
+      (box :class "pci-record" :orientation "h" :space-evenly "false"
+        (label :class "pci-icon" :text "" :hexpand "false" :halign "start")
+        (label :class "pci-label" :text WM :hexpand "true"  :halign "start")
+      )
+    )
+  )
+)
+
+;;    (label :text OS)
+;;    (label :text KERNEL)
+;;    (label :text WM)
+;;    ;; CPU TEMP
+;;    (label :text CPU)
+;;    (label :text {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)} :wrap "true" :limit-width "30" :width "100%")
+;;    (progress :value {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)} :width "50%" :halign "center" :valign "center")
+;;    ;; CPU USED
+;;    (label :text {round(EWW_CPU["avg"], 0)} :wrap "true" :limit-width "30" :width "100%")
+;;    (progress :value {round(EWW_CPU["avg"], 0)} :width "50%" :halign "center" :valign "center")
+;;    ;; BATTERY
+;;    (label :text {EWW_BATTERY["BAT0"]["status"]} :wrap "true" :limit-width "30" :width "100%")
+;;    (label :text {EWW_BATTERY["BAT0"]["capacity"]} :wrap "true" :limit-width "30" :width "100%")
+;;    (progress :value {EWW_BATTERY["BAT0"]["capacity"]} :width "50%" :halign "center" :valign "center")
+;;    ;; Memory
+;;    (label :text {round(EWW_RAM["used_mem_perc"], 0)} :wrap "true" :limit-width "30" :width "100%")
+;;    (label :text {EWW_RAM} :wrap "true" :limit-width "30" :width "100%")
+;;    ;; BRIGHTNESS
+;;    (label :text BRIGHTNESS :wrap "true" :limit-width "30" :width "100%")
+;;    (progress :value {BRIGHTNESS * 100} :width "50%" :halign "center" :valign "center")
+
+
 (defwidget power-profiles []
   (box :class "pp-container" :orientation "v"
-    ;; CPU TEMP
-    (label :text {EWW_TEMPS["CORETEMP_PACKAGE_ID_0"]} :wrap "true" :limit-width "30" :width "100%")
-    ;; CPU USED
-    (label :text {EWW_CPU["avg"]} :wrap "true" :limit-width "30" :width "100%")
-    ;; BATTERY
-    (label :text {EWW_BATTERY["BAT0"]["status"]} :wrap "true" :limit-width "30" :width "100%")
-    (label :text {EWW_BATTERY["BAT0"]["capacity"]} :wrap "true" :limit-width "30" :width "100%")
     ;; PROFILE
-    (label :text PROFILE :wrap "true" :limit-width "30" :width "100%")
-    (label :text {PROFILE == "performance" ? 'yes' : 'no'} :wrap "true" :limit-width "30" :width "100%")
-    ;; BRIGHTNESS
-    (label :text BRIGHTNESS :wrap "true" :limit-width "30" :width "100%")
-    (progress :value {BRIGHTNESS * 100})
     (box :class "pp-buttons" :orientation "h" :hexpand "true" :space-evenly "true"
       (button :onclick "scripts/power-save.sh" :vexpand "true" :hexpand "true" :class {PROFILE == "power-saver" ? "active" : "pp-save"}
         (label :class "label-icon" :text "󰌪")
@@ -42,20 +86,27 @@
   )
 )
 
+(defwidget widget-wall []
+  (box :class "widget-wall" :orientation "v" :spacing "10" :space-evenly "false"
+    (pc-info)
+    (power-profiles)
+  )
+)
+
 ;; Windows --------------------------------------------------------------------------------------------------------------
 
 (defwindow activate-linux
-  :monitor 0
+  :monitor '[0]'
   :stacking "bg"
   :namespace "eww"
   :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
   (activate-linux)
 )
 
-(defwindow power-profiles
-  :monitor 0
+(defwindow widget-wall
+  :monitor '[0,1]'
   :stacking "bg"
   :namespace "eww"
-  :geometry (geometry :x "2.5%" :y "5%" :width "20%" :height "10%" :anchor "bottom left")
-  (power-profiles)
+  :geometry (geometry :x "2.5%" :y "5%" :width "25%" :height "10%" :anchor "bottom left")
+  (widget-wall)
 )
