@@ -1,16 +1,4 @@
 // General Style -------------------------------------
-progress {
-  background-color: #3daee9;
-  border-radius: 10px;
-}
-
-trough {
-  background-color: transparent;
-  background-image: none;
-  border: 2px solid #a347ba;
-  min-width: 50px;
-}
-
 .widget-wall {
   background-color: transparent;
 }
@@ -63,8 +51,83 @@ trough {
   padding: 5px;
 }
 
-
 .pci-box {
+  background-color: #31363b;
+  padding: 5px;
+  margin: 10px;
+}
+
+// HW Info -------------------------------------
+.hw-info {
+  background-color: #232629;
+  color: #eff0f1;
+  border: 4px solid #3daee9;
+  font-family: Maple Mono;
+  font-size: 110%;
+}
+
+.hw-record {
+  margin: 5px;
+  background-color: #232629;
+}
+
+.hw-record progress {
+  background-color: #3daee9;
+  border-radius: 0;
+  min-height: 30px;
+}
+
+.hw-record trough {
+  background-color: #31363b;
+  background-image: none;
+  border: 2px solid #a347ba;
+  border-radius: 0;
+  min-height: 30px;
+}
+
+.hw-icon {
+  background-color: #a347ba;
+  border: 2px #a347ba;
+  color: #ffffff;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: 'Ubuntu Nerd Font';
+}
+
+.hw-label {
+  background-color: transparent;
+  color: #eff0f1;
+  padding: 5px;
+  font-size: 110%;
+}
+
+.hw-header {
+  background-color: #232629;
+  //border: 2px solid #3daee9;
+  padding: 5px;
+}
+
+.hw-icon-h {
+  background-color: #a347ba;
+  border: 2px #a347ba;
+  color: #ffffff;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: 'Ubuntu Nerd Font';
+}
+
+.hw-label-b {
+  border: 2px solid #a347ba;
+}
+
+.hw-label-h {
+  background-color: transparent;
+  padding: 5px;
+}
+
+.hw-box {
   background-color: #31363b;
   padding: 5px;
   margin: 10px;

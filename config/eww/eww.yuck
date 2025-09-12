@@ -1,11 +1,11 @@
 ;; Variables --------------------------------------------------------------------------------------------------------------
-;; PC stats
+;; PC info
 (defpoll OS :interval "999s" 'fastfetch | awk -F: \'/OS/ {print $2}\'')
 (defpoll HOST :interval "999s" 'fastfetch | awk -F: \'/Host/ {print $2}\'')
 (defpoll CPU :interval "999s" 'fastfetch | awk -F: \'/CPU/ {print $2}\'')
 (defpoll KERNEL :interval "999s" 'fastfetch | awk -F: \'/Kernel/ {print $2}\'')
 (defpoll WM :interval "999s" 'fastfetch | awk -F: \'/WM/ {print $2}\'')
-
+;; HW info
 ;; Status info
 (defpoll PROFILE :interval "1s" 'powerprofilesctl get')
 (defpoll BRIGHTNESS :interval "1s" 'scripts/brightness-level.sh')
@@ -47,27 +47,68 @@
   )
 )
 
-;;    (label :text OS)
-;;    (label :text KERNEL)
-;;    (label :text WM)
-;;    ;; CPU TEMP
-;;    (label :text CPU)
-;;    (label :text {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)} :wrap "true" :limit-width "30" :width "100%")
-;;    (progress :value {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)} :width "50%" :halign "center" :valign "center")
-;;    ;; CPU USED
-;;    (label :text {round(EWW_CPU["avg"], 0)} :wrap "true" :limit-width "30" :width "100%")
-;;    (progress :value {round(EWW_CPU["avg"], 0)} :width "50%" :halign "center" :valign "center")
-;;    ;; BATTERY
-;;    (label :text {EWW_BATTERY["BAT0"]["status"]} :wrap "true" :limit-width "30" :width "100%")
-;;    (label :text {EWW_BATTERY["BAT0"]["capacity"]} :wrap "true" :limit-width "30" :width "100%")
-;;    (progress :value {EWW_BATTERY["BAT0"]["capacity"]} :width "50%" :halign "center" :valign "center")
-;;    ;; Memory
-;;    (label :text {round(EWW_RAM["used_mem_perc"], 0)} :wrap "true" :limit-width "30" :width "100%")
-;;    (label :text {EWW_RAM} :wrap "true" :limit-width "30" :width "100%")
-;;    ;; BRIGHTNESS
-;;    (label :text BRIGHTNESS :wrap "true" :limit-width "30" :width "100%")
-;;    (progress :value {BRIGHTNESS * 100} :width "50%" :halign "center" :valign "center")
-
+(defwidget hw-info []
+  (box :class "hw-info" :orientation "v" :space-evenly "false"
+    (box :class "hw-header" :orientation "h" :space-evenly "false" :hexpand "true"
+      (label :class "hw-icon-h" :text "󰟀"  :hexpand "false" :halign "start")
+      (box :class "hw-label-b" :width "100%" :hexpand "true"
+        (label :class "hw-label-h" :text "Hardware Monitor" :hexpand "true" :halign "start")
+      )
+    )
+    ;;
+    (box :class "hw-box" :orientation "v"
+      (box :class "hw-record" :orientation "h" :space-evenly "false"
+        (label :class "hw-icon" :text "" :hexpand "false" :halign "start")
+        (
+          progress
+          :value {round(EWW_CPU["avg"], 0)}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+      (box :class "hw-record" :orientation "h" :space-evenly "false" :hexpand "true"
+        (label :class "hw-icon" :text "" :hexpand "false" :halign "start")
+        (progress
+          :value {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+      (box :class "hw-record" :orientation "h" :space-evenly "false"
+        (label :class "hw-icon" :text "" :hexpand "false" :halign "start")
+        (progress
+          :value {round(EWW_RAM["used_mem_perc"], 0)}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+      (box :class "hw-record" :orientation "h" :space-evenly "false"
+        (label :class "hw-icon" :text "󰋊" :hexpand "false" :halign "start")
+        (progress
+          :value {round(EWW_RAM["used_mem_perc"], 0)}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+      (box :class "hw-record" :orientation "h" :space-evenly "false"
+        (label :class "hw-icon" :text "󰂀" :hexpand "false" :halign "start")
+        (progress
+          :value {EWW_BATTERY["BAT0"]["capacity"]}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+      (box :class "hw-record" :orientation "h" :space-evenly "false"
+        (label :class "hw-icon" :text "󰳲" :hexpand "false" :halign "start")
+        (progress
+          :value {BRIGHTNESS * 100}
+          :height "100%"
+          :hexpand "true"
+        )
+      )
+    )
+  )
+)
 
 (defwidget power-profiles []
   (box :class "pp-container" :orientation "v"
@@ -89,6 +130,7 @@
 (defwidget widget-wall []
   (box :class "widget-wall" :orientation "v" :spacing "10" :space-evenly "false"
     (pc-info)
+    (hw-info)
     (power-profiles)
   )
 )
