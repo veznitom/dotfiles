@@ -68,7 +68,6 @@
       )
       (box :class "hw-record" :orientation "h" :space-evenly "false" :hexpand "true"
         (label :class "hw-icon" :text "" :hexpand "false" :halign "start")
-        (label :text {EWW_TEMPS} :hexpand "false" :halign "start")
         (progress
           :value {round(EWW_TEMPS["CORETEMP_PACKAGE_ID_0"], 0)}
           :height "100%"
@@ -150,6 +149,6 @@
   :monitor '[0,1]'
   :stacking "bg"
   :namespace "eww"
-  :geometry (geometry :x "2.5%" :y "5%" :width "95%" :height "10%" :anchor "bottom left")
+  :geometry (geometry :x "2.5%" :y "5%" :width "20%" :height "10%" :anchor "bottom left")
   (widget-wall)
 )
