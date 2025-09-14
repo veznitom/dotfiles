@@ -1,0 +1,197 @@
+{
+  // ------------------------------------------------------------------
+  // General settings
+  // ------------------------------------------------------------------
+  "name": "notebook",
+  // "output": "eDP-1",
+  "layer": "top",
+  "position": "top",
+  "margin": "0",
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  // ------------------------------------------------------------------
+  // Modules layout
+  // ------------------------------------------------------------------
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock#time",
+    "clock#date"
+  ],
+  "modules-right": [
+    "custom/battery",
+    "battery",
+    "custom/audio",
+    "pulseaudio",
+    "custom/language",
+    "hyprland/language",
+    "custom/tray",
+    "tray",
+    "custom/power"
+  ],
+  // ------------------------------------------------------------------
+  // Build-in modules
+  // ------------------------------------------------------------------
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ]
+  },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "AC0",
+    "interval": 10,
+    "format": "{capacity}%",
+    "tooltip-format": "{time}",
+    "states": {
+      "full": 100,
+      "fullish": 75,
+      "half": 50,
+      "warning": 25,
+      "urgent": 15,
+      "critical": 5
+    }
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "on-click": "blueman-manager"
+  },
+  "clock#time": {
+    "format": " {:%H:%M}"
+  },
+  "clock#date": {
+    "format": "{:%a, %d %b} "
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 10,
+    "on-click": "kitty btop"
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "path": "/"
+  },
+  "memory": {
+    "format": " {percentage}%",
+    "interval": 10
+  },
+  "network": {
+    "format": "{bandwidthTotalBits}",
+    "tooltip-format": "{ifname}: {ipaddr}"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "󰗑",
+      "performance": "󱐋",
+      "balanced": "󰗑",
+      "power-saver": "󰌪"
+    }
+  },
+  "pulseaudio": {
+    "format": "{volume}%",
+    "format-muted": "muted",
+    "scroll-step": 5,
+    "on-click": "pwvucontrol"
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "temperature": {
+    "thermal-zone": "/sys/class/thermal/thermal_zone0/temp",
+    "format": "<span background-colot='#ff0000'>  </span> {temperatureC}˚C",
+    "interval": 10
+  },
+  "tray": {
+    "spacing": 10,
+    "icon-size": 16,
+    "show-passive-items": true
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "on-click": "activate"
+  },
+  // ------------------------------------------------------------------
+  // Hyprland modules
+  // ------------------------------------------------------------------
+  "hyprland/window": {
+    "format": "{initialTitle}",
+    "icon": false
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "eDP-1": 5
+    }
+  },
+  "hyprland/language": {
+    "format": "{short}"
+  },
+  // ------------------------------------------------------------------
+  // Custom modules
+  // ------------------------------------------------------------------
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "nwg-bar"
+  },
+  "custom/divider": {
+    "format": " | "
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "rofi -show drun"
+  },
+  // ------------------------------------------------------------------
+  // Custom symbols for modules
+  // ------------------------------------------------------------------
+  "custom/audio": {
+    "format": ""
+  },
+  "custom/battery": {
+    "format": "󰁹"
+  },
+  "custom/language": {
+    "format": "󰌌"
+  },
+  "custom/tray": {
+    "format": "󱊖"
+  },
+  // ------------------------------------------------------------------
+  // Module groups
+  // ------------------------------------------------------------------
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "custom/divider",
+      "memory",
+      "custom/divider",
+      "temperature",
+      "custom/divider",
+      "disk"
+    ]
+  },
+  "group/power": {
+    "orientation": "horizontal",
+    "modules": [
+      "power-profiles-daemon",
+      "custom/divider",
+      "backlight",
+      "custom/divider",
+      "battery"
+    ]
+  }
+}

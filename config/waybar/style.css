@@ -1,141 +1,209 @@
-@import url("../../.cache/wal/colors-waybar.css");
+/* ============================
+     Base UI
+  ============================ */
+@define-color bg #232629;
+/* Main background */
+@define-color bg-alt #31363b;
+/* Inactive/secondary background */
+@define-color surface #fcfcfc;
+/* Bright surfaces (tooltips, floating panels) */
+@define-color border #4d4d4d;
+/* Window/divider borders */
+
+/* Text */
+@define-color fg #eff0f1;
+/* Normal text */
+@define-color fg-inactive #bdc3c7;
+/* Inactive/disabled text */
+@define-color fg-on-accent #ffffff;
+/* Text on highlights */
+
+/* ============================
+     Window States
+  ============================ */
+@define-color window-active #3daee9;
+/* Active window border */
+@define-color window-inactive #31363b;
+/* Inactive window border */
+@define-color window-urgent #da4453;
+/* Urgent window border (error red) */
+@define-color window-focus #8ab4f8;
+/* Focus ring / strong highlight */
+
+/* ============================
+     Accents & Highlights
+  ============================ */
+@define-color accent #3daee9;
+/* Primary accent (active UI) */
+@define-color accent-dark #2679a8;
+/* Selection background */
+@define-color accent-purple #a347ba;
+/* Secondary accent / visited */
+@define-color link #2980b9;
+/* Hyperlinks */
+
+/* ============================
+     Semantic Colors
+  ============================ */
+@define-color success #27ae60;
+/* Success / Ok */
+@define-color warning #f67400;
+/* Warning / Attention */
+@define-color error #da4453;
+/* Error / Critical */
+@define-color info #1abc9c;
+/* Info / Neutral */
 
 * {
-  border: none;
-  border-radius: 0;
-  font-family: Noto Sans Mono, sans-serif;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family:
+        Maple Mono,
+        Noto Sans Mono,
+        Ubuntu Nerd Font,
+        sans-serif;
+    font-size: large;
+    min-height: 0;
 }
 
-/* Top bar ---------------------------------------------------------*/
-.top {
-  font-size: 16px;
-  background-color: @background;
-  border-top: 2px solid @color9;
-  border-bottom: 2px solid @color9;
-  border-left: 2px solid @background;
+/* ------------------------------------ Bar ------------------------------------ */
+.notebook {
+    background-color: @bg;
+    color: @fg;
+
+    border-bottom: 4px solid @accent-dark;
 }
 
-/* Modules left ------------------- */
-#custom-launcher,
-#taskbar,
+/* ------------------------------------ Sections ------------------------------------ */
+.modules-left {}
+
+.modules-center {}
+
+.modules-right {}
+
+/* ------------------------------------ Modules ------------------------------------ */
+#battery,
+#pulseaudio,
+#language,
+#tray {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    border-top: 2px solid @accent-purple;
+    border-right: 2px solid @accent-purple;
+    border-bottom: 2px solid @accent-purple;
+
+    color: @fg;
+}
+
+#battery.warning {
+    color: @warning;
+}
+
+#battery.critical {
+    color: @error;
+}
+
+#battery.charging {
+    color: @info;
+}
+
+#pulseaudio.muted {
+    color: @fg-inactive;
+}
+
+#clock.time,
+#clock.date {
+    background-color: @accent-dark;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid @accent-dark;
+}
+
+#clock.time {
+    color: @fg-on-accent;
+}
+
+#clock.date {
+    color: @bg;
+}
+
 #window {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
-
-  background-color: @background;
-  color: @foreground;
+    color: @fg-inactive;
 }
 
-/* Modules center ------------------ */
-#clock {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
-
-  background-color: @background;
-  color: @foreground;
-}
-
-/* Modules right  ------------------ */
-#custom-power {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 5px;
-
-  background-color: @background;
-  color: @foreground;
-}
-
-/* Left bar ---------------------------------------------------------*/
-.left {
-  font-size: 14px;
-  background-color: @background;
-  border-left: 2px solid @color9;
-  border-right: 2px solid @color9;
-}
-
-/* Modules left   ------------------- */
-
-#custom-logo {
-  margin-top: 15px;
-  font-size: 20px;
-  color: @color7;
-}
-
-/* Modules center ------------------- */
 #workspaces {
-  font-size: large;
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+
+    border: 2px solid @accent-purple;
 }
 
 #workspaces button {
-  border: 2px solid transparent;
-  margin-left: 20px;
-  margin-right: 20px;
-  color: @foreground;
+    padding-top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0;
+    color: @fg-on-accent;
+    background-color: @bg-alt;
+}
+
+#workspaces button.urgent {
+    color: @warning;
 }
 
 #workspaces button.active {
-  color: @color9;
-  border-bottom: 2px solid @color9;
+    color: @fg-on-accent;
+    background-color: @accent-purple;
 }
 
-/* Modules right ------------------- */
-/* Sound */
-#pulseaudio {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-top: 2px solid @color9;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
+#workspaces button.empty {
+    color: @fg-inactive;
+    background-color: @bg;
 }
 
-/* Hardware */
-#hardware {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
+#workspaces button.empty.active {
+    color: @fg-on-accent;
+    background-color: @accent-purple;
 }
 
-#cpu,
-#memory,
-#temperature {}
 
-/* Connections */
-#connections {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
+/* ------------------------------------ Custom ------------------------------------ */
+#custom-launcher,
+#custom-power {
+    font-size: 20px;
+    background-color: @accent-dark;
+    color: @bg;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid @accent-dark;
 }
 
-#network,
-#bluetooth {}
-
-/* Power */
-#power {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid @color9;
-  color: @foreground;
+#custom-audio,
+#custom-battery,
+#custom-language,
+#custom-tray {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: @accent-purple;
 }
 
-#battery,
-#backlight,
-#power-profiles-daemon {}
+/* ------------------------------------ Groups ------------------------------------ */
+#audio {}
 
-/* Language */
-#language {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  color: @foreground;
-}
+#time {}
+
+#hardware {}
+
+#connections {}
+
+#power {}
