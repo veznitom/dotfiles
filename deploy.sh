@@ -9,6 +9,7 @@ cp -r $CONF_DIR/config/hypr/hyprpaper.conf ~/.config/hypr/
 cp -r $CONF_DIR/config/hypr/hyprlock.conf  ~/.config/hypr/
 cp -r $CONF_DIR/config/hypr/hypridle.conf  ~/.config/hypr/
 cp -r $CONF_DIR/config/hypr/wallpapers     ~/.config/hypr/
+cp -r $CONF_DIR/config/hypr/scripts        ~/.config/hypr/
 cp -r $CONF_DIR/config/hypr/colors.conf    ~/.config/hypr/
 case $HOSTNAME in
   ("Note") cp -r    $CONF_DIR/config/hypr/monitors-notebook.conf ~/.config/hypr/monitors.conf;;
@@ -32,4 +33,3 @@ chmod +x ~/.config/eww/launch.sh
 chmod +x ~/.config/eww/scripts/power-perf.sh
 chmod +x ~/.config/eww/scripts/power-bal.sh
 chmod +x ~/.config/eww/scripts/power-save.sh
-
