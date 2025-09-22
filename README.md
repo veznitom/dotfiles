@@ -2,6 +2,8 @@
 
 This repository contains dotfiles and programs used in my Arch Hyprland setup. The goal is to have fully fledged desktop environment.
 
+![Desktop](images/desktop.png)
+
 ## Arch Linux Desktop Environment
 
 | Component                   |                                                   | Key bindings       |
